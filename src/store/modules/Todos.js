@@ -28,6 +28,10 @@ export default {
         async deleteTodo({commit}, todoId) {
             await axios.delete(`http://localhost:4000/todos/${todoId}`)
             commit('removeTodo', todoId)
+        },
+        async limitTodos({commit}, limit) {
+            const response = await axios.get(`http://localhost:4000/todos?_limit=${limit}`)
+            commit('setTodos', response.data)
         }
     },
     getters: {

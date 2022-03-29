@@ -1,6 +1,7 @@
 <template>
   <main class="container mt-5">
     <AddTodo/>
+    <LimitTodo/>
     <div class="row">
       <div class="col-md-4 mb-3" v-for="todo in todos" :key="todo.id">
         <div class="card bg-success text-light">
@@ -19,10 +20,11 @@
 <script>
 import {mapActions, mapGetters} from "vuex";
 import AddTodo from "./AddTodo.vue";
+import LimitTodo from "./LimitTodo.vue";
 
 export default {
   name: "Todos",
-  components: {AddTodo},
+  components: {LimitTodo, AddTodo},
   computed: mapGetters(['todos']),
   methods: mapActions(['getAllTodos', 'deleteTodo']),
   mounted() {
