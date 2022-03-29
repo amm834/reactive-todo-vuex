@@ -13,6 +13,13 @@ export default {
         },
         removeTodo(state, todoId) {
             state.todos = state.todos.filter(todo => todo.id !== todoId)
+        },
+        updateTodo(state, updateTodo) {
+            state.todos.forEach(todo => {
+                if (todo.id === updateTodo.id) {
+                    todo = updateTodo
+                }
+            })
         }
     },
     actions: {
@@ -32,6 +39,10 @@ export default {
         async limitTodos({commit}, limit) {
             const response = await axios.get(`http://localhost:4000/todos?_limit=${limit}`)
             commit('setTodos', response.data)
+        },
+        async updateTodo({commit}, todo) {
+            const response = await axios.get(`http://localhost:4000/todos/${todo.id}`, todo)
+            commit('updateTodo', todo)
         }
     },
     getters: {

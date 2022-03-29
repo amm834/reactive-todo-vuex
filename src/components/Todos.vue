@@ -3,8 +3,12 @@
     <AddTodo/>
     <LimitTodo/>
     <div class="row">
-      <div class="col-md-4 mb-3" v-for="todo in todos" :key="todo.id">
-        <div class="card bg-success text-light">
+      <div class="col-md-4 mb-3" v-for="todo in todos" :key="todo.id"
+      >
+        <div class="card bg-primary text-light"
+             @dblclick="toggleTodo(todo)"
+             :class="todo.completed ? 'bg-success' : ''"
+        >
           <div class="card-body d-flex justify-content-between">
             <span>{{ todo.title }}</span>
             <span>
@@ -26,7 +30,13 @@ export default {
   name: "Todos",
   components: {LimitTodo, AddTodo},
   computed: mapGetters(['todos']),
-  methods: mapActions(['getAllTodos', 'deleteTodo']),
+  methods: {
+    ...mapActions(['getAllTodos', 'deleteTodo', 'updateTodo']),
+    toggleTodo(todo) {
+      todo.completed = !todo.completed
+      this.updateTodo(todo)
+    }
+  },
   mounted() {
     this.getAllTodos()
   }
