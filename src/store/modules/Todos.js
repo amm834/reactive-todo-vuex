@@ -1,13 +1,21 @@
+import axios from 'axios'
+
 export default {
     state: {
-        todos: [
-            {id: 1, title: "Todo 1"},
-            {id: 2, title: "Todo 2"},
-            {id: 3, title: "Todo 3"},
-        ]
+        todos: [],
     },
-    mutations: {},
-    actions: {},
+    mutations: {
+        setTodos(state, todos) {
+            state.todos = todos
+        },
+    },
+    actions: {
+        async getAllTodos({commit}) {
+            const response = await axios.get('http://localhost:4000/todos')
+            const todos = response.data
+            commit('setTodos', todos)
+        }
+    },
     getters: {
         todos(state) {
             return state.todos;
