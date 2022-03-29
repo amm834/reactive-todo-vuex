@@ -1,8 +1,11 @@
 import {createApp} from 'vue'
 import App from './App.vue'
-import './main.scss'
 import store from './store'
+// main scss
+import './main.scss'
 
+// bootstrap
+import 'bootstrap'
 
 createApp(App)
     .use(store)

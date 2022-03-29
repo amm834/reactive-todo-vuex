@@ -1,17 +1,12 @@
 <template>
-  <div class="container mt-3">
-    <button class="btn btn-primary">Button</button>
-    <p>
-      {{$store.state.Todos.name}}
-    </p>
-  </div>
+  <Todos/>
 </template>
 
 
 <script>
+import Todos from "./Todos.vue";
+
 export default {
-mounted() {
-  console.log(this.$store.state.Todos.name)
-}
+  components: {Todos},
 }
 </script>
